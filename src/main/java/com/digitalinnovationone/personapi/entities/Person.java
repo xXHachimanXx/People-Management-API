@@ -12,10 +12,9 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
 @Builder
+@RequiredArgsConstructor
 @AllArgsConstructor
-@NoArgsConstructor
 public class Person {
 
     @Id
