@@ -6,25 +6,19 @@ import com.digitalinnovationone.personapi.dto.response.MessageResponseDTO;
 import com.digitalinnovationone.personapi.entities.Person;
 import com.digitalinnovationone.personapi.exception.PersonNotFoundException;
 import com.digitalinnovationone.personapi.repositories.PersonRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class PersonService {
     private PersonRepository personRepository;
 
     private final PersonMapper personMapper = PersonMapper.INSTANCE;
-
-    @Autowired
-    public PersonService(PersonRepository personRepository) {
-        this.personRepository = personRepository;
-    }
 
     public MessageResponseDTO createPerson(PersonDTO personDTO) {
         Person personToSave = personMapper.toModel(personDTO);
@@ -43,7 +37,6 @@ public class PersonService {
         Person person = verifyIfExists(id);
 
         return personMapper.toDTO(person);
-
     }
 
     public void delete(Long id) throws PersonNotFoundException {
